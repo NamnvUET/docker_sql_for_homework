@@ -23,7 +23,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: python:3.9
     environment:
         - user=root
         - password=root
@@ -31,11 +30,7 @@ services:
         - port=5432
         - db=ny_taxi
         - yellow_taxi_table=yellow_taxi_trips
-        - yellow_taxi_data_url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
         - green_taxi_table=green_taxi_trips
-        - green_taxi_data_url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-01.csv.gz"
         - zones_data_table=zones
-        - zones_data_url="https://s3.amazonaws.com/nyc-tlc/misc/taxi+_zone_lookup.csv"
-        - PYTHONUNBUFFERED=1
     stdin_open: true
 

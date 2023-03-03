@@ -5,7 +5,7 @@ import argparse
 import pandas as pd
 
 #initial parser
-parser = argparse.ArgumentParser(prog='Ingest Data Prog', description='Ingest CSV data from url to table_name on PostgresDB', epilog='End Program')
+parser = argparse.ArgumentParser(prog='Ingest Data Prog', description='Ingest CSV data from url to table_name on PostgresDB', epilog='End Ingest Program')
 
 #Params: user, password, host, port, database name, table-name, url
 parser.add_argument('--user', help='username for postgresDB')
@@ -14,11 +14,8 @@ parser.add_argument('--host', help='host of postgresDB')
 parser.add_argument('--port', help='port of postgresDB')
 parser.add_argument('--db', help='database name for postgresDB')
 parser.add_argument('--yellow_taxi_table', help='name of the table where we will write the result to')
-parser.add_argument('--yellow_taxi_data_url', help='url of the csv file will downloaded')
 parser.add_argument('--green_taxi_table', help='name of the table where we will write the result to')
-parser.add_argument('--green_taxi_data_url', help='url of the csv file will downloaded')
 parser.add_argument('--zones_data_table', help='name of the table where we will write the result to')
-parser.add_argument('--zones_data_url', help='url of the csv file will downloaded')
 
 args = parser.parse_args()
 
@@ -29,22 +26,15 @@ def main(params):
     port = params.port
     db = params.db
     yellow_taxi_table = params.yellow_taxi_table
-    yellow_taxi_data_url = params.yellow_taxi_data_url
     green_taxi_table = params.green_taxi_table
-    green_taxi_data_url = params.green_taxi_data_url
     zones_data_table = params.zones_data_table
-    zones_data_url = params.zones_data_url
 
     csv_name_for_yellow_taxi_data = 'yellow_data.csv.gz'
     csv_name_for_green_taxi_data = 'green_data.csv.gz'
     csv_name_for_zones_data = 'zones_data.csv'
 
     #For test params
-    #print(user,password, host, port, db, table_name, url)
-
-    os.system(f"wget {yellow_taxi_data_url} -O {csv_name_for_yellow_taxi_data}")
-    os.system(f"wget {green_taxi_data_url} -O {csv_name_for_green_taxi_data}")
-    os.system(f"wget {zones_data_url} -O {csv_name_for_zones_data}")
+    print(user,password, host, port, db, yellow_taxi_table, green_taxi_table, zones_data_table)
 
     os.system(f"gzip -d {csv_name_for_yellow_taxi_data}")
     os.system(f"gzip -d {csv_name_for_green_taxi_data}")
